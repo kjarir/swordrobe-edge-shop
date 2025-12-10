@@ -17,18 +17,18 @@ const Header = () => {
   const location = useLocation();
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border/50">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border/30">
       <div className="container-wide">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <span className="font-heading text-xl md:text-2xl font-bold tracking-[0.2em] text-foreground">
+          <Link to="/" className="flex items-center group">
+            <span className="font-heading text-xl md:text-2xl font-bold tracking-[0.25em] text-foreground transition-all duration-200 group-hover:tracking-[0.3em]">
               SWORDROBE
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-10">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
@@ -44,13 +44,13 @@ const Header = () => {
           </nav>
 
           {/* Right Actions */}
-          <div className="flex items-center gap-4">
-            <Button variant="ghost" size="icon" className="hidden md:flex">
+          <div className="flex items-center gap-2">
+            <Button variant="ghost" size="icon" className="hidden md:flex hover:bg-secondary transition-colors duration-200">
               <Search className="h-5 w-5" />
             </Button>
-            <Button variant="ghost" size="icon" className="relative">
+            <Button variant="ghost" size="icon" className="relative hover:bg-secondary transition-colors duration-200">
               <ShoppingBag className="h-5 w-5" />
-              <span className="absolute -top-1 -right-1 h-4 w-4 bg-foreground text-background text-[10px] font-medium flex items-center justify-center">
+              <span className="absolute -top-0.5 -right-0.5 h-4 w-4 bg-foreground text-background text-[9px] font-heading flex items-center justify-center">
                 0
               </span>
             </Button>
@@ -59,10 +59,13 @@ const Header = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="lg:hidden"
+              className="lg:hidden hover:bg-secondary transition-colors duration-200"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              <div className="relative w-5 h-5">
+                <Menu className={cn("h-5 w-5 absolute inset-0 transition-all duration-200", isMenuOpen ? "opacity-0 rotate-90" : "opacity-100 rotate-0")} />
+                <X className={cn("h-5 w-5 absolute inset-0 transition-all duration-200", isMenuOpen ? "opacity-100 rotate-0" : "opacity-0 -rotate-90")} />
+              </div>
             </Button>
           </div>
         </div>
@@ -71,22 +74,23 @@ const Header = () => {
       {/* Mobile Menu */}
       <div
         className={cn(
-          "lg:hidden fixed inset-x-0 top-16 bg-background border-b border-border transition-all duration-300",
+          "lg:hidden fixed inset-x-0 top-16 bg-background/98 backdrop-blur-md border-b border-border transition-all duration-300 ease-out",
           isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
         )}
       >
-        <nav className="container-wide py-8 flex flex-col gap-4">
-          {navLinks.map((link) => (
+        <nav className="container-wide py-8 flex flex-col gap-1">
+          {navLinks.map((link, index) => (
             <Link
               key={link.path}
               to={link.path}
               onClick={() => setIsMenuOpen(false)}
               className={cn(
-                "text-lg font-heading tracking-[0.1em] uppercase py-2 transition-colors",
+                "text-2xl font-heading tracking-[0.1em] uppercase py-3 transition-all duration-200 border-b border-border/30",
                 location.pathname === link.path
                   ? "text-foreground"
-                  : "text-muted-foreground hover:text-foreground"
+                  : "text-muted-foreground hover:text-foreground hover:translate-x-2"
               )}
+              style={{ animationDelay: `${index * 0.05}s` }}
             >
               {link.name}
             </Link>
