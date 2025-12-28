@@ -83,7 +83,7 @@ export const products: Product[] = [
     category: "outerwear",
     images: ["/placeholder.svg"],
     sizes: ["S", "M", "L", "XL", "XXL"],
-    description: "Heavyweight hoodie featuring exclusive Swordrobe graphics. Kangaroo pocket with hidden zip.",
+    description: "Heavyweight hoodie featuring exclusive LavenderLily graphics. Kangaroo pocket with hidden zip.",
     material: "450 GSM French Terry",
     inStock: true,
     isNew: true,
