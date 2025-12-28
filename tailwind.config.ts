@@ -58,6 +58,11 @@ export default {
           "light-gray": "hsl(var(--brand-light-gray))",
           white: "hsl(var(--brand-white))",
         },
+        lavender: {
+          DEFAULT: "hsl(var(--lavender))",
+          light: "hsl(var(--lavender-light))",
+          dark: "hsl(var(--lavender-dark))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

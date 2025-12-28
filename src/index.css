@@ -6,47 +6,52 @@
 
 @layer base {
   :root {
-    --background: 0 0% 4%;
-    --foreground: 0 0% 98%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 8%;
 
-    --card: 0 0% 6%;
-    --card-foreground: 0 0% 98%;
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 8%;
 
-    --popover: 0 0% 6%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 8%;
 
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 4%;
+    --primary: 263 70% 70%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 10%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 263 30% 92%;
+    --secondary-foreground: 0 0% 8%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 0 0% 18%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 263 50% 85%;
+    --accent-foreground: 0 0% 8%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 16%;
-    --input: 0 0% 16%;
-    --ring: 0 0% 98%;
+    --border: 0 0% 88%;
+    --input: 0 0% 88%;
+    --ring: 263 70% 70%;
 
     --radius: 0px;
 
     /* Custom brand tokens */
-    --brand-black: 0 0% 4%;
-    --brand-charcoal: 0 0% 10%;
-    --brand-gray: 0 0% 22%;
-    --brand-light-gray: 0 0% 55%;
-    --brand-white: 0 0% 98%;
+    --brand-black: 0 0% 8%;
+    --brand-charcoal: 0 0% 15%;
+    --brand-gray: 0 0% 35%;
+    --brand-light-gray: 0 0% 65%;
+    --brand-white: 0 0% 100%;
+    
+    /* Lavender accent */
+    --lavender: 263 70% 70%;
+    --lavender-light: 263 60% 85%;
+    --lavender-dark: 263 70% 55%;
     
     /* Shadows */
-    --shadow-product: 0 4px 20px -4px hsl(0 0% 0% / 0.5);
-    --shadow-card: 0 8px 32px -8px hsl(0 0% 0% / 0.6);
-    --shadow-glow: 0 0 60px hsl(0 0% 100% / 0.03);
+    --shadow-product: 0 4px 20px -4px hsl(0 0% 0% / 0.1);
+    --shadow-card: 0 8px 32px -8px hsl(0 0% 0% / 0.15);
+    --shadow-glow: 0 0 60px hsl(263 70% 70% / 0.1);
 
     /* Typography */
     --font-heading: 'Oswald', sans-serif;
@@ -54,8 +59,8 @@
   }
 
   .dark {
-    --background: 0 0% 4%;
-    --foreground: 0 0% 98%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 8%;
   }
 }
 
