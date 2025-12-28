@@ -28,12 +28,12 @@ const Contact = () => {
       {/* Hero */}
       <section className="py-20 md:py-28 bg-secondary">
         <div className="container-wide text-center">
-          <p className="text-primary text-sm tracking-widest uppercase mb-4">
+          <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase mb-4">
             Get In Touch
           </p>
           <h1 className="heading-xl mb-4">Contact Us</h1>
           <p className="body-lg text-muted-foreground max-w-xl mx-auto">
-            Visit our boutique or reach out online
+            Visit our store or reach out online
           </p>
         </div>
       </section>
@@ -44,12 +44,12 @@ const Contact = () => {
           <div className="grid lg:grid-cols-2 gap-16">
             {/* Store Information */}
             <div>
-              <h2 className="heading-md mb-8">Visit Our Boutique</h2>
+              <h2 className="heading-md mb-8">Visit Our Store</h2>
               
               <div className="space-y-8">
                 <div className="flex items-start gap-4">
-                  <div className="h-14 w-14 border border-primary/30 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <MapPin className="h-6 w-6 text-primary" />
+                  <div className="h-14 w-14 border border-border flex items-center justify-center flex-shrink-0">
+                    <MapPin className="h-6 w-6" />
                   </div>
                   <div>
                     <h4 className="heading-sm mb-2">Location</h4>
@@ -61,7 +61,7 @@ const Contact = () => {
                       href="https://maps.google.com/?q=Rassaz+Multiplex+Mira+Road+Mumbai" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-block mt-2 text-sm text-primary hover:underline transition-colors"
+                      className="inline-block mt-2 text-sm text-muted-foreground underline hover:text-foreground transition-colors"
                     >
                       Get Directions
                     </a>
@@ -69,14 +69,14 @@ const Contact = () => {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="h-14 w-14 border border-primary/30 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Phone className="h-6 w-6 text-primary" />
+                  <div className="h-14 w-14 border border-border flex items-center justify-center flex-shrink-0">
+                    <Phone className="h-6 w-6" />
                   </div>
                   <div>
                     <h4 className="heading-sm mb-2">Phone</h4>
                     <a 
                       href="tel:7977981325" 
-                      className="body-md text-muted-foreground hover:text-primary transition-colors"
+                      className="body-md text-muted-foreground hover:text-foreground transition-colors"
                     >
                       7977981325
                     </a>
@@ -84,8 +84,8 @@ const Contact = () => {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="h-14 w-14 border border-primary/30 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Clock className="h-6 w-6 text-primary" />
+                  <div className="h-14 w-14 border border-border flex items-center justify-center flex-shrink-0">
+                    <Clock className="h-6 w-6" />
                   </div>
                   <div>
                     <h4 className="heading-sm mb-2">Store Hours</h4>
@@ -97,27 +97,27 @@ const Contact = () => {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="h-14 w-14 border border-primary/30 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Instagram className="h-6 w-6 text-primary" />
+                  <div className="h-14 w-14 border border-border flex items-center justify-center flex-shrink-0">
+                    <Instagram className="h-6 w-6" />
                   </div>
                   <div>
                     <h4 className="heading-sm mb-2">Follow Us</h4>
                     <a 
-                      href="https://instagram.com/lavenderlily" 
+                      href="https://instagram.com/swordrobe" 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="body-md text-muted-foreground hover:text-primary transition-colors"
+                      className="body-md text-muted-foreground hover:text-foreground transition-colors"
                     >
-                      @lavenderlily
+                      @swordrobe
                     </a>
                   </div>
                 </div>
               </div>
 
               {/* Map Placeholder */}
-              <div className="mt-12 aspect-video bg-gradient-to-br from-accent/30 to-secondary rounded-xl flex items-center justify-center border border-border">
+              <div className="mt-12 aspect-video bg-secondary flex items-center justify-center border border-border">
                 <div className="text-center">
-                  <MapPin className="h-12 w-12 text-primary/30 mx-auto mb-3" />
+                  <MapPin className="h-12 w-12 text-muted-foreground/30 mx-auto mb-3" />
                   <p className="text-sm text-muted-foreground">
                     Mira Road, Mumbai
                   </p>
@@ -137,7 +137,7 @@ const Contact = () => {
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="Your name"
                     required
-                    className="h-14 bg-secondary border-border focus:border-primary rounded-lg"
+                    className="h-14 bg-secondary border-border focus:border-foreground rounded-none"
                   />
                 </div>
 
@@ -149,7 +149,7 @@ const Contact = () => {
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="your@email.com"
                     required
-                    className="h-14 bg-secondary border-border focus:border-primary rounded-lg"
+                    className="h-14 bg-secondary border-border focus:border-foreground rounded-none"
                   />
                 </div>
 
@@ -161,7 +161,7 @@ const Contact = () => {
                     placeholder="How can we help?"
                     required
                     rows={6}
-                    className="bg-secondary border-border focus:border-primary rounded-lg resize-none"
+                    className="bg-secondary border-border focus:border-foreground rounded-none resize-none"
                   />
                 </div>
 
@@ -171,7 +171,7 @@ const Contact = () => {
               </form>
 
               {/* Additional Info */}
-              <div className="mt-12 p-8 bg-secondary border border-border rounded-xl">
+              <div className="mt-12 p-8 bg-secondary border border-border">
                 <h4 className="heading-sm mb-4">Quick Help</h4>
                 <div className="space-y-3 text-muted-foreground body-md">
                   <p>

@@ -8,28 +8,40 @@ const FeaturedProducts = () => {
   const featuredProducts = getFeaturedProducts();
 
   return (
-    <section className="section-padding bg-background">
-      <div className="container-wide">
+    <section className="section-padding bg-background relative overflow-hidden">
+      {/* Background accent */}
+      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-secondary/50 rounded-full blur-[150px] pointer-events-none" />
+      
+      <div className="container-wide relative">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
           <div>
-            <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase mb-3">
-              Curated Selection
-            </p>
-            <h2 className="heading-lg">Featured Products</h2>
+            <div className="flex items-center gap-3 mb-4">
+              <span className="w-6 h-px bg-muted-foreground" />
+              <p className="text-muted-foreground text-xs tracking-[0.3em] uppercase">
+                Curated Selection
+              </p>
+            </div>
+            <h2 className="heading-lg">Featured</h2>
           </div>
-          <Link to="/shop">
+          <Link to="/shop" className="group">
             <Button variant="minimal" className="group">
-              View All Products
-              <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              View All
+              <ArrowRight className="h-4 w-4 ml-2 transition-transform duration-200 group-hover:translate-x-1" />
             </Button>
           </Link>
         </div>
 
         {/* Products Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-          {featuredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5">
+          {featuredProducts.map((product, index) => (
+            <div 
+              key={product.id} 
+              className={`opacity-0 animate-fade-in-up`}
+              style={{ animationDelay: `${index * 0.08}s` }}
+            >
+              <ProductCard product={product} />
+            </div>
           ))}
         </div>
       </div>

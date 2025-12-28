@@ -5,22 +5,22 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap font-heading text-sm tracking-wide transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap font-heading text-sm tracking-[0.15em] uppercase transition-all duration-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
         default:
-          "bg-primary text-primary-foreground hover:bg-primary/90 border border-primary rounded-lg shadow-md hover:shadow-lg",
+          "bg-primary text-primary-foreground hover:bg-primary/90 border border-primary",
         destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90 rounded-lg",
+          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
-          "border border-primary/30 bg-transparent text-foreground hover:border-primary hover:bg-primary/5 rounded-lg",
+          "border border-foreground/30 bg-transparent text-foreground hover:border-foreground hover:bg-foreground/5",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80 rounded-lg",
-        ghost: "hover:bg-accent hover:text-accent-foreground rounded-lg",
-        link: "text-primary underline-offset-4 hover:underline tracking-normal",
-        hero: "bg-primary text-primary-foreground border border-primary hover:bg-primary/90 rounded-lg shadow-lg hover:shadow-xl",
-        minimal: "bg-transparent text-foreground border-b border-primary/30 hover:border-primary px-0 rounded-none",
+          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
+        link: "text-foreground underline-offset-4 hover:underline tracking-normal",
+        hero: "bg-primary text-primary-foreground border border-primary hover:bg-transparent hover:text-foreground",
+        minimal: "bg-transparent text-foreground border-b border-foreground/30 hover:border-foreground px-0 rounded-none",
       },
       size: {
         default: "h-12 px-8 py-3",

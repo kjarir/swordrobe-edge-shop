@@ -11,22 +11,22 @@ const About = () => {
         {/* Background Text */}
         <div className="absolute inset-0 flex items-center justify-center opacity-[0.02] pointer-events-none">
           <span className="font-heading text-[30vw] font-bold tracking-tighter whitespace-nowrap">
-            LL
+            SW
           </span>
         </div>
         
         <div className="container-wide relative z-10">
           <div className="max-w-3xl">
-            <p className="text-primary text-sm tracking-widest uppercase mb-4">
+            <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase mb-4">
               Our Story
             </p>
             <h1 className="heading-xl mb-6">
-              Elegance<br />
-              Redefined
+              Built for Warriors.<br />
+              Worn by the Bold.
             </h1>
             <p className="body-lg text-muted-foreground">
-              LavenderLily was born from a love for timeless beauty, designed for 
-              women who appreciate elegance in everyday life.
+              Swordrobe was born from the streets of Mumbai, designed for those who 
+              refuse to follow the crowd.
             </p>
           </div>
         </div>
@@ -37,32 +37,33 @@ const About = () => {
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <p className="text-primary text-sm tracking-widest uppercase mb-4">
-                Our Mission
+              <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase mb-4">
+                The Mission
               </p>
               <h2 className="heading-lg mb-8">
-                Beauty in<br />
-                simplicity.
+                More than clothing.<br />
+                It's armor.
               </h2>
               <div className="space-y-6 body-md text-muted-foreground">
                 <p>
-                  LavenderLily isn't just a boutique—it's a celebration of feminine grace. 
-                  We curate pieces that make every woman feel confident and beautiful.
+                  Swordrobe isn't just a brand—it's a movement. We create clothing for 
+                  the urban warriors who carve their own path through the concrete jungle.
                 </p>
                 <p>
-                  Every piece is selected with care, focusing on quality fabrics, 
-                  flattering silhouettes, and timeless designs that transcend trends.
+                  Every piece is designed with intention. From the tactical utility of our 
+                  cargo pants to the premium weight of our tees, we obsess over the details 
+                  that matter. Quality materials. Functional design. Unapologetic style.
                 </p>
                 <p>
-                  We believe fashion should empower you to express your unique beauty. 
-                  That's why every LavenderLily piece is chosen to make you feel 
-                  effortlessly elegant.
+                  We believe your wardrobe should empower you, not confine you. That's why 
+                  every Swordrobe piece is built to move with you, last through the grind, 
+                  and make a statement without saying a word.
                 </p>
               </div>
             </div>
-            <div className="aspect-square bg-gradient-to-br from-accent/30 to-secondary rounded-2xl flex items-center justify-center">
-              <span className="font-heading text-6xl text-primary/20 tracking-widest">
-                LL
+            <div className="aspect-square bg-secondary flex items-center justify-center">
+              <span className="font-heading text-6xl text-muted-foreground/20 tracking-widest">
+                SW
               </span>
             </div>
           </div>
@@ -70,11 +71,11 @@ const About = () => {
       </section>
 
       {/* Values */}
-      <section className="section-padding bg-secondary">
+      <section className="section-padding bg-card">
         <div className="container-wide">
           <div className="text-center mb-16">
-            <p className="text-primary text-sm tracking-widest uppercase mb-4">
-              What We Believe
+            <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase mb-4">
+              What We Stand For
             </p>
             <h2 className="heading-lg">Our Values</h2>
           </div>
@@ -83,19 +84,19 @@ const About = () => {
             {[
               {
                 title: "Quality First",
-                description: "Premium fabrics and careful craftsmanship. We never compromise on what touches your skin.",
+                description: "Premium materials, superior construction. We never compromise on what goes into our products.",
               },
               {
-                title: "Timeless Beauty",
-                description: "Designs that transcend seasons. Classic elegance that remains beautiful year after year.",
+                title: "Street Authenticity",
+                description: "Born from street culture, staying true to our roots. Every design reflects real urban life.",
               },
               {
-                title: "Feminine Grace",
-                description: "Celebrating the unique beauty of every woman. Fashion that empowers and inspires confidence.",
+                title: "Bold Expression",
+                description: "Fashion should be fearless. We create for those who dare to stand out and make statements.",
               },
             ].map((value, index) => (
-              <div key={index} className="p-8 bg-background border border-border rounded-xl hover:border-primary/30 transition-colors">
-                <span className="text-6xl font-heading text-primary/30 block mb-4">
+              <div key={index} className="p-8 border border-border hover:border-foreground/30 transition-colors">
+                <span className="text-6xl font-heading text-muted-foreground/30 block mb-4">
                   0{index + 1}
                 </span>
                 <h3 className="heading-sm mb-4">{value.title}</h3>
@@ -110,10 +111,10 @@ const About = () => {
       <section className="section-padding">
         <div className="container-wide text-center">
           <h2 className="heading-lg mb-6">
-            Ready to bloom?
+            Ready to gear up?
           </h2>
           <p className="body-lg text-muted-foreground mb-10 max-w-xl mx-auto">
-            Explore our collection and find your perfect piece.
+            Explore our collection and find your armor.
           </p>
           <Link to="/shop">
             <Button variant="hero" size="xl" className="group">

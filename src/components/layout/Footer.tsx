@@ -1,42 +1,63 @@
 import { Link } from "react-router-dom";
-import { Instagram, MapPin, Phone } from "lucide-react";
+import { Instagram, MapPin, Phone, ArrowUpRight } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-secondary border-t border-border">
+    <footer className="bg-card border-t border-border/50 relative">
+      {/* Main Footer */}
       <div className="container-wide section-padding">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
           {/* Brand */}
-          <div className="lg:col-span-1">
-            <Link to="/" className="inline-block mb-6">
-              <span className="font-heading text-2xl font-bold text-primary">
-                LavenderLily
+          <div className="lg:col-span-4">
+            <Link to="/" className="inline-block mb-6 group">
+              <span className="font-heading text-2xl font-bold tracking-[0.25em] text-foreground transition-all duration-200 group-hover:tracking-[0.3em]">
+                SWORDROBE
               </span>
             </Link>
-            <p className="body-md text-muted-foreground mb-6">
-              Elegance in Every Bloom
+            <p className="body-md text-muted-foreground mb-2 max-w-xs">
+              Wardrobe Full of Swordrobe
             </p>
-            <div className="flex gap-4">
+            <p className="text-xs text-muted-foreground/60 tracking-wide mb-8">
+              Premium streetwear for the urban warrior
+            </p>
+            <div className="flex gap-3">
               <a
-                href="https://instagram.com/lavenderlily"
+                href="https://instagram.com/swordrobe"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="h-10 w-10 border border-border rounded-full flex items-center justify-center hover:border-primary hover:bg-primary/5 transition-all"
+                className="h-11 w-11 border border-border flex items-center justify-center transition-all duration-200 hover:border-foreground hover:bg-foreground group"
               >
-                <Instagram className="h-5 w-5" />
+                <Instagram className="h-4 w-4 transition-colors group-hover:text-background" />
               </a>
             </div>
           </div>
 
           {/* Shop Links */}
-          <div>
-            <h4 className="heading-sm mb-6">Shop</h4>
+          <div className="lg:col-span-2">
+            <h4 className="text-xs font-heading tracking-[0.2em] uppercase mb-6 text-muted-foreground">Shop</h4>
             <ul className="space-y-3">
-              {["All Products", "Dresses", "Tops", "Bottoms", "Accessories"].map((item) => (
+              {["All Products", "Tees", "Outerwear", "Cargos", "Accessories"].map((item) => (
                 <li key={item}>
                   <Link
                     to="/shop"
-                    className="body-md text-muted-foreground hover:text-primary transition-colors"
+                    className="body-md text-muted-foreground hover:text-foreground transition-colors duration-200 inline-block"
+                  >
+                    {item}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Collections */}
+          <div className="lg:col-span-2">
+            <h4 className="text-xs font-heading tracking-[0.2em] uppercase mb-6 text-muted-foreground">Collections</h4>
+            <ul className="space-y-3">
+              {["Shadow Ops", "Void Series", "Urban Armor", "Phantom Drop"].map((item) => (
+                <li key={item}>
+                  <Link
+                    to="/collections"
+                    className="body-md text-muted-foreground hover:text-foreground transition-colors duration-200 inline-block"
                   >
                     {item}
                   </Link>
@@ -46,8 +67,8 @@ const Footer = () => {
           </div>
 
           {/* Info Links */}
-          <div>
-            <h4 className="heading-sm mb-6">Info</h4>
+          <div className="lg:col-span-2">
+            <h4 className="text-xs font-heading tracking-[0.2em] uppercase mb-6 text-muted-foreground">Info</h4>
             <ul className="space-y-3">
               {[
                 { name: "About Us", path: "/about" },
@@ -58,7 +79,7 @@ const Footer = () => {
                 <li key={item.name}>
                   <Link
                     to={item.path}
-                    className="body-md text-muted-foreground hover:text-primary transition-colors"
+                    className="body-md text-muted-foreground hover:text-foreground transition-colors duration-200 inline-block"
                   >
                     {item.name}
                   </Link>
@@ -68,39 +89,43 @@ const Footer = () => {
           </div>
 
           {/* Contact */}
-          <div>
-            <h4 className="heading-sm mb-6">Visit Us</h4>
+          <div className="lg:col-span-2">
+            <h4 className="text-xs font-heading tracking-[0.2em] uppercase mb-6 text-muted-foreground">Visit</h4>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                <p className="body-md text-muted-foreground">
-                  Rassaz Multiplex, Shop No.51<br />
-                  Mira Road, Mumbai
+                <MapPin className="h-4 w-4 text-muted-foreground flex-shrink-0 mt-1" />
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Rassaz Multiplex<br />
+                  Shop No.51, Mira Road<br />
+                  Mumbai
                 </p>
               </div>
               <div className="flex items-center gap-3">
-                <Phone className="h-5 w-5 text-primary flex-shrink-0" />
+                <Phone className="h-4 w-4 text-muted-foreground flex-shrink-0" />
                 <a
                   href="tel:7977981325"
-                  className="body-md text-muted-foreground hover:text-primary transition-colors"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
                 >
-                  7977981325
+                  +91 797 798 1325
                 </a>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div className="mt-16 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-muted-foreground">
-            © 2024 LavenderLily. All rights reserved.
+      {/* Bottom Bar */}
+      <div className="border-t border-border/30">
+        <div className="container-wide py-6 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-xs text-muted-foreground/60">
+            © 2024 Swordrobe. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <Link to="/contact" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-              Privacy Policy
+            <Link to="/contact" className="text-xs text-muted-foreground/60 hover:text-muted-foreground transition-colors duration-200">
+              Privacy
             </Link>
-            <Link to="/contact" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-              Terms of Service
+            <Link to="/contact" className="text-xs text-muted-foreground/60 hover:text-muted-foreground transition-colors duration-200">
+              Terms
             </Link>
           </div>
         </div>
