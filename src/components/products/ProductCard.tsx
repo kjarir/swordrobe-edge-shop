@@ -21,47 +21,47 @@ const ProductCard = ({ product, className }: ProductCardProps) => {
       to={`/product/${product.id}`}
       className={cn("product-card block group", className)}
     >
-      <div className="relative overflow-hidden bg-secondary">
+      <div className="relative overflow-hidden bg-secondary rounded-xl">
         {/* Product Image */}
-        <div className="aspect-[3/4] bg-gradient-to-br from-secondary to-muted flex items-center justify-center">
-          <span className="text-muted-foreground/50 font-heading text-sm tracking-widest">
-            SWORDROBE
+        <div className="aspect-[3/4] bg-gradient-to-br from-accent/30 to-secondary flex items-center justify-center">
+          <span className="text-primary/30 font-heading text-sm tracking-widest">
+            LavenderLily
           </span>
         </div>
 
         {/* Badges */}
         <div className="absolute top-4 left-4 flex flex-col gap-2">
           {product.isNew && (
-            <span className="bg-foreground text-background text-[10px] font-heading tracking-widest px-3 py-1">
+            <span className="bg-primary text-primary-foreground text-[10px] font-heading tracking-widest px-3 py-1 rounded-full">
               NEW
             </span>
           )}
           {product.originalPrice && (
-            <span className="bg-destructive text-destructive-foreground text-[10px] font-heading tracking-widest px-3 py-1">
+            <span className="bg-destructive text-destructive-foreground text-[10px] font-heading tracking-widest px-3 py-1 rounded-full">
               SALE
             </span>
           )}
           {!product.inStock && (
-            <span className="bg-muted text-muted-foreground text-[10px] font-heading tracking-widest px-3 py-1">
+            <span className="bg-muted text-muted-foreground text-[10px] font-heading tracking-widest px-3 py-1 rounded-full">
               SOLD OUT
             </span>
           )}
         </div>
 
         {/* Quick View Overlay */}
-        <div className="absolute inset-0 bg-background/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-          <span className="font-heading text-sm tracking-[0.2em] text-foreground">
-            QUICK VIEW
+        <div className="absolute inset-0 bg-primary/10 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-xl">
+          <span className="font-heading text-sm tracking-wide text-foreground bg-background/90 px-6 py-3 rounded-lg">
+            Quick View
           </span>
         </div>
       </div>
 
       {/* Product Info */}
       <div className="p-4">
-        <p className="text-[10px] text-muted-foreground tracking-widest uppercase mb-1">
+        <p className="text-[10px] text-primary tracking-widest uppercase mb-1">
           {product.category}
         </p>
-        <h3 className="font-heading text-sm tracking-wide uppercase text-foreground mb-2 line-clamp-1">
+        <h3 className="font-heading text-sm text-foreground mb-2 line-clamp-1">
           {product.name}
         </h3>
         <div className="flex items-center gap-2">

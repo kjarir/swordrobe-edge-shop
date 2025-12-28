@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ['Oswald', 'sans-serif'],
-        body: ['Inter', 'sans-serif'],
+        heading: ['Playfair Display', 'serif'],
+        body: ['Lato', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -52,10 +52,10 @@ export default {
           foreground: "hsl(var(--card-foreground))",
         },
         brand: {
-          black: "hsl(var(--brand-black))",
-          charcoal: "hsl(var(--brand-charcoal))",
-          gray: "hsl(var(--brand-gray))",
-          "light-gray": "hsl(var(--brand-light-gray))",
+          lavender: "hsl(var(--brand-lavender))",
+          "lavender-light": "hsl(var(--brand-lavender-light))",
+          "lavender-dark": "hsl(var(--brand-lavender-dark))",
+          purple: "hsl(var(--brand-purple))",
           white: "hsl(var(--brand-white))",
         },
       },
@@ -99,8 +99,8 @@ export default {
         "scale-in": "scale-in 0.5s ease-out forwards",
       },
       backgroundImage: {
-        'gradient-dark': 'linear-gradient(180deg, hsl(var(--background)) 0%, hsl(0 0% 8%) 100%)',
-        'gradient-overlay': 'linear-gradient(180deg, transparent 0%, hsl(var(--background) / 0.9) 100%)',
+        'gradient-lavender': 'linear-gradient(135deg, hsl(270 50% 75%) 0%, hsl(280 45% 70%) 100%)',
+        'gradient-soft': 'linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(270 30% 98%) 100%)',
       },
     },
   },

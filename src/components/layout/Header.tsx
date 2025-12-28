@@ -22,8 +22,8 @@ const Header = () => {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <span className="font-heading text-xl md:text-2xl font-bold tracking-[0.2em] text-foreground">
-              SWORDROBE
+            <span className="font-heading text-xl md:text-2xl font-bold text-primary">
+              LavenderLily
             </span>
           </Link>
 
@@ -35,7 +35,7 @@ const Header = () => {
                 to={link.path}
                 className={cn(
                   "nav-link",
-                  location.pathname === link.path && "text-foreground after:w-full"
+                  location.pathname === link.path && "text-primary after:w-full"
                 )}
               >
                 {link.name}
@@ -50,7 +50,7 @@ const Header = () => {
             </Button>
             <Button variant="ghost" size="icon" className="relative">
               <ShoppingBag className="h-5 w-5" />
-              <span className="absolute -top-1 -right-1 h-4 w-4 bg-foreground text-background text-[10px] font-medium flex items-center justify-center">
+              <span className="absolute -top-1 -right-1 h-4 w-4 bg-primary text-primary-foreground text-[10px] font-medium flex items-center justify-center rounded-full">
                 0
               </span>
             </Button>
@@ -82,10 +82,10 @@ const Header = () => {
               to={link.path}
               onClick={() => setIsMenuOpen(false)}
               className={cn(
-                "text-lg font-heading tracking-[0.1em] uppercase py-2 transition-colors",
+                "text-lg font-heading py-2 transition-colors",
                 location.pathname === link.path
-                  ? "text-foreground"
-                  : "text-muted-foreground hover:text-foreground"
+                  ? "text-primary"
+                  : "text-muted-foreground hover:text-primary"
               )}
             >
               {link.name}

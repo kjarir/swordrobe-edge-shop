@@ -61,7 +61,7 @@ const ProductDetail = () => {
         <div className="container-wide">
           <Link
             to="/shop"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Shop
@@ -75,9 +75,9 @@ const ProductDetail = () => {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
             {/* Product Images */}
             <div className="space-y-4">
-              <div className="aspect-[3/4] bg-secondary flex items-center justify-center">
-                <span className="text-muted-foreground/30 font-heading text-2xl tracking-widest">
-                  SWORDROBE
+              <div className="aspect-[3/4] bg-gradient-to-br from-accent/30 to-secondary rounded-xl flex items-center justify-center">
+                <span className="text-primary/20 font-heading text-2xl tracking-widest">
+                  LavenderLily
                 </span>
               </div>
             </div>
@@ -86,11 +86,11 @@ const ProductDetail = () => {
             <div className="lg:py-8">
               {/* Category & Badges */}
               <div className="flex items-center gap-3 mb-4">
-                <span className="text-xs text-muted-foreground tracking-[0.2em] uppercase">
+                <span className="text-xs text-primary tracking-widest uppercase">
                   {product.category}
                 </span>
                 {product.isNew && (
-                  <span className="bg-foreground text-background text-[10px] font-heading tracking-widest px-2 py-1">
+                  <span className="bg-primary text-primary-foreground text-[10px] font-heading tracking-widest px-2 py-1 rounded-full">
                     NEW
                   </span>
                 )}
@@ -120,7 +120,7 @@ const ProductDetail = () => {
               <div className="mb-8">
                 <div className="flex justify-between items-center mb-4">
                   <span className="heading-sm">Size</span>
-                  <button className="text-sm text-muted-foreground underline hover:text-foreground">
+                  <button className="text-sm text-primary hover:underline">
                     Size Guide
                   </button>
                 </div>
@@ -129,10 +129,10 @@ const ProductDetail = () => {
                     <button
                       key={size}
                       onClick={() => setSelectedSize(size)}
-                      className={`min-w-[60px] h-12 px-4 border font-heading text-sm tracking-wider transition-all ${
+                      className={`min-w-[60px] h-12 px-4 border font-heading text-sm tracking-wider transition-all rounded-lg ${
                         selectedSize === size
-                          ? "bg-foreground text-background border-foreground"
-                          : "border-border hover:border-foreground"
+                          ? "bg-primary text-primary-foreground border-primary"
+                          : "border-border hover:border-primary"
                       }`}
                     >
                       {size}
@@ -144,17 +144,17 @@ const ProductDetail = () => {
               {/* Quantity */}
               <div className="mb-8">
                 <span className="heading-sm block mb-4">Quantity</span>
-                <div className="inline-flex items-center border border-border">
+                <div className="inline-flex items-center border border-border rounded-lg">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="h-12 w-12 flex items-center justify-center hover:bg-secondary transition-colors"
+                    className="h-12 w-12 flex items-center justify-center hover:bg-secondary transition-colors rounded-l-lg"
                   >
                     <Minus className="h-4 w-4" />
                   </button>
                   <span className="w-16 text-center font-heading">{quantity}</span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
-                    className="h-12 w-12 flex items-center justify-center hover:bg-secondary transition-colors"
+                    className="h-12 w-12 flex items-center justify-center hover:bg-secondary transition-colors rounded-r-lg"
                   >
                     <Plus className="h-4 w-4" />
                   </button>
@@ -175,19 +175,19 @@ const ProductDetail = () => {
               {/* Features */}
               <div className="space-y-4 pt-8 border-t border-border">
                 <div className="flex items-center gap-3">
-                  <Truck className="h-5 w-5 text-muted-foreground" />
+                  <Truck className="h-5 w-5 text-primary" />
                   <span className="body-md text-muted-foreground">
                     Free shipping on orders above ₹2,999
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <RotateCcw className="h-5 w-5 text-muted-foreground" />
+                  <RotateCcw className="h-5 w-5 text-primary" />
                   <span className="body-md text-muted-foreground">
                     Easy 7-day returns & exchanges
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Shield className="h-5 w-5 text-muted-foreground" />
+                  <Shield className="h-5 w-5 text-primary" />
                   <span className="body-md text-muted-foreground">
                     100% authentic products
                   </span>
