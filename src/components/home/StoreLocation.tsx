@@ -22,7 +22,7 @@ const StoreLocation = () => {
                   <MapPin className="h-12 w-12 text-foreground/40 mx-auto mb-6 relative" />
                 </div>
                 <p className="text-muted-foreground font-heading tracking-[0.3em] text-sm uppercase">
-                  Mumbai
+                  Dubai
                 </p>
               </div>
             </div>
@@ -54,8 +54,8 @@ const StoreLocation = () => {
                 <div>
                   <h4 className="heading-sm mb-2">Location</h4>
                   <p className="body-md text-muted-foreground">
-                    Rassaz Multiplex, Shop No.51<br />
-                    Mira Road, Mumbai
+                    Dubai Mall, Level 2<br />
+                    Fashion Avenue, Dubai, UAE
                   </p>
                 </div>
               </div>
@@ -67,10 +67,10 @@ const StoreLocation = () => {
                 <div>
                   <h4 className="heading-sm mb-2">Contact</h4>
                   <a 
-                    href="tel:7977981325" 
+                    href="tel:+971501234567" 
                     className="body-md text-muted-foreground hover:text-foreground transition-colors duration-200"
                   >
-                    +91 797 798 1325
+                    +971 50 123 4567
                   </a>
                 </div>
               </div>
@@ -82,8 +82,8 @@ const StoreLocation = () => {
                 <div>
                   <h4 className="heading-sm mb-2">Hours</h4>
                   <p className="body-md text-muted-foreground">
-                    Mon – Sat: 11AM – 9PM<br />
-                    Sunday: 12PM – 8PM
+                    Mon – Sat: 10AM – 10PM<br />
+                    Sunday: 12PM – 10PM
                   </p>
                 </div>
               </div>

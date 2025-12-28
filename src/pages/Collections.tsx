@@ -1,44 +1,179 @@
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const collections = [
   {
-    id: "shadow-ops",
-    name: "Shadow Ops",
-    description: "Tactical essentials for night missions",
-    tag: "CORE",
+    id: "spring-collection",
+    name: "Spring Collection",
+    description: "Fresh florals and pastel hues for the season",
+    tag: "NEW",
     pieces: "08",
   },
   {
-    id: "void-series",
-    name: "Void Series",
-    description: "Minimalist darkness, maximum impact",
-    tag: "NEW",
+    id: "summer-essentials",
+    name: "Summer Essentials",
+    description: "Light, breezy pieces for warm days",
+    tag: "POPULAR",
     pieces: "06",
   },
   {
-    id: "urban-armor",
-    name: "Urban Armor",
-    description: "Protection meets streetwear",
+    id: "elegant-evenings",
+    name: "Elegant Evenings",
+    description: "Sophisticated pieces for special occasions",
     tag: "SIGNATURE",
     pieces: "10",
   },
   {
-    id: "phantom-drop",
-    name: "Phantom Drop",
-    description: "Limited edition stealth pieces",
-    tag: "LIMITED",
+    id: "casual-chic",
+    name: "Casual Chic",
+    description: "Effortlessly stylish everyday wear",
+    tag: "ESSENTIAL",
     pieces: "04",
   },
 ];
 
 const Collections = () => {
+  const heroSectionRef = useRef<HTMLElement>(null);
+  const heroBadgeRef = useRef<HTMLDivElement>(null);
+  const heroHeadingRef = useRef<HTMLHeadingElement>(null);
+  const heroDescriptionRef = useRef<HTMLParagraphElement>(null);
+  const collectionsSectionRef = useRef<HTMLElement>(null);
+  const collectionsGridRef = useRef<HTMLDivElement>(null);
+  const ctaSectionRef = useRef<HTMLElement>(null);
+  const ctaHeadingRef = useRef<HTMLHeadingElement>(null);
+  const ctaButtonRef = useRef<HTMLAnchorElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Hero Section Animations
+      gsap.fromTo(
+        heroBadgeRef.current,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: heroSectionRef.current,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+
+      // Hero heading text reveal
+      if (heroHeadingRef.current) {
+        const text = heroHeadingRef.current.textContent || "";
+        heroHeadingRef.current.innerHTML = `<span class="collections-heading-line" style="display: inline-block; opacity: 0; transform: translateY(100px); clip-path: inset(0 0 100% 0);">${text}</span>`;
+
+        gsap.to(".collections-heading-line", {
+          opacity: 1,
+          y: 0,
+          clipPath: "inset(0 0 0% 0)",
+          duration: 1.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: heroHeadingRef.current,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        });
+      }
+
+      gsap.fromTo(
+        heroDescriptionRef.current,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          delay: 0.3,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: heroDescriptionRef.current,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+
+      // Collections Grid Animation
+      const collectionCards = collectionsGridRef.current?.children;
+      if (collectionCards) {
+        gsap.fromTo(
+          collectionCards,
+          {
+            opacity: 0,
+            y: 80,
+            scale: 0.95,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 1,
+            stagger: 0.15,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: collectionsGridRef.current,
+              start: "top 85%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }
+
+      // CTA Section Animations
+      gsap.fromTo(
+        ctaHeadingRef.current,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ctaSectionRef.current,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+
+      gsap.fromTo(
+        ctaButtonRef.current,
+        { opacity: 0, scale: 0.9, y: 30 },
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.8,
+          delay: 0.3,
+          ease: "back.out(1.7)",
+          scrollTrigger: {
+            trigger: ctaButtonRef.current,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    });
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <Layout>
       {/* Hero */}
-      <section className="py-24 md:py-32 bg-secondary relative overflow-hidden">
+      <section ref={heroSectionRef} className="py-24 md:py-32 bg-secondary relative overflow-hidden">
         {/* Background */}
         <div className="absolute inset-0 opacity-[0.02]" style={{
           backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--foreground)) 1px, transparent 0)`,
@@ -46,30 +181,29 @@ const Collections = () => {
         }} />
         
         <div className="container-wide relative text-center">
-          <div className="flex items-center justify-center gap-3 mb-6 opacity-0 animate-fade-in">
+          <div ref={heroBadgeRef} className="flex items-center justify-center gap-3 mb-6">
             <span className="w-8 h-px bg-muted-foreground" />
             <p className="text-muted-foreground text-xs tracking-[0.3em] uppercase">
               Curated
             </p>
             <span className="w-8 h-px bg-muted-foreground" />
           </div>
-          <h1 className="heading-xl mb-6 opacity-0 animate-fade-in-up stagger-1">Collections</h1>
-          <p className="body-lg text-muted-foreground max-w-lg mx-auto opacity-0 animate-fade-in-up stagger-2">
+          <h1 ref={heroHeadingRef} className="heading-xl mb-6">Collections</h1>
+          <p ref={heroDescriptionRef} className="body-lg text-muted-foreground max-w-lg mx-auto">
             Explore our carefully curated drops and signature series
           </p>
         </div>
       </section>
 
       {/* Collections Grid */}
-      <section className="section-padding">
+      <section ref={collectionsSectionRef} className="section-padding">
         <div className="container-wide">
-          <div className="grid md:grid-cols-2 gap-4 md:gap-6">
-            {collections.map((collection, index) => (
+          <div ref={collectionsGridRef} className="grid md:grid-cols-2 gap-4 md:gap-6">
+            {collections.map((collection) => (
               <Link
                 key={collection.id}
                 to={`/shop?collection=${collection.id}`}
-                className="group relative aspect-[4/3] bg-card overflow-hidden border border-border/50 hover:border-foreground/20 transition-all duration-300 opacity-0 animate-fade-in-up"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className="group relative aspect-[4/3] bg-card overflow-hidden border border-border/50 hover:border-foreground/20 transition-all duration-300"
               >
                 {/* Background gradient */}
                 <div className="absolute inset-0 bg-gradient-to-br from-secondary via-muted/30 to-secondary opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
@@ -113,17 +247,17 @@ const Collections = () => {
       </section>
 
       {/* CTA Banner */}
-      <section className="py-20 bg-foreground text-background relative overflow-hidden">
+      <section ref={ctaSectionRef} className="py-20 bg-foreground text-background relative overflow-hidden">
         <div className="absolute inset-0 opacity-10" style={{
           backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--background)) 1px, transparent 0)`,
           backgroundSize: '32px 32px'
         }} />
         
         <div className="container-wide relative text-center">
-          <h2 className="font-heading text-2xl md:text-4xl tracking-wide uppercase mb-8">
+          <h2 ref={ctaHeadingRef} className="font-heading text-2xl md:text-4xl tracking-wide uppercase mb-8">
             Can't decide? Browse everything
           </h2>
-          <Link to="/shop">
+          <Link ref={ctaButtonRef} to="/shop">
             <Button 
               variant="outline" 
               size="lg" 

@@ -1,8 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ShoppingBag, Search } from "lucide-react";
+import { Menu, X, ShoppingBag, Search, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useCurrency } from "@/contexts/CurrencyContext";
+import gsap from "gsap";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -15,15 +23,35 @@ const navLinks = [
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const { currency, setCurrency } = useCurrency();
+  const headerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Header slide down animation on mount
+      gsap.fromTo(
+        headerRef.current,
+        { y: -100, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: "power3.out",
+        }
+      );
+    }, headerRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border/30">
+    <header ref={headerRef} className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border/30">
       <div className="container-wide">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center group">
             <span className="font-heading text-xl md:text-2xl font-bold tracking-[0.25em] text-foreground transition-all duration-200 group-hover:tracking-[0.3em]">
-              SWORDROBE
+              LavenderLily
             </span>
           </Link>
 
@@ -48,6 +76,31 @@ const Header = () => {
             <Button variant="ghost" size="icon" className="hidden md:flex hover:bg-secondary transition-colors duration-200">
               <Search className="h-5 w-5" />
             </Button>
+            
+            {/* Currency Selector */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="sm" className="hidden md:flex hover:bg-secondary transition-colors duration-200 font-heading text-xs tracking-wider">
+                  {currency}
+                  <ChevronDown className="h-3 w-3 ml-1" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="min-w-[100px]">
+                <DropdownMenuItem 
+                  onClick={() => setCurrency('AED')}
+                  className={cn("font-heading text-xs tracking-wider", currency === 'AED' && "bg-secondary")}
+                >
+                  AED
+                </DropdownMenuItem>
+                <DropdownMenuItem 
+                  onClick={() => setCurrency('USD')}
+                  className={cn("font-heading text-xs tracking-wider", currency === 'USD' && "bg-secondary")}
+                >
+                  USD
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            
             <Button variant="ghost" size="icon" className="relative hover:bg-secondary transition-colors duration-200">
               <ShoppingBag className="h-5 w-5" />
               <span className="absolute -top-0.5 -right-0.5 h-4 w-4 bg-foreground text-background text-[9px] font-heading flex items-center justify-center">

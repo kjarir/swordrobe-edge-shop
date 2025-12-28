@@ -6,10 +6,12 @@ import { getProductById, products } from "@/data/products";
 import ProductCard from "@/components/products/ProductCard";
 import { Minus, Plus, ArrowLeft, Truck, RotateCcw, Shield } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useCurrency } from "@/contexts/CurrencyContext";
 
 const ProductDetail = () => {
   const { id } = useParams();
   const { toast } = useToast();
+  const { formatPrice } = useCurrency();
   const product = getProductById(id || "");
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [quantity, setQuantity] = useState(1);
@@ -26,14 +28,6 @@ const ProductDetail = () => {
       </Layout>
     );
   }
-
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat("en-IN", {
-      style: "currency",
-      currency: "INR",
-      maximumFractionDigits: 0,
-    }).format(price);
-  };
 
   const handleAddToCart = () => {
     if (!selectedSize) {
@@ -77,7 +71,7 @@ const ProductDetail = () => {
             <div className="space-y-4">
               <div className="aspect-[3/4] bg-secondary flex items-center justify-center">
                 <span className="text-muted-foreground/30 font-heading text-2xl tracking-widest">
-                  SWORDROBE
+                  LavenderLily
                 </span>
               </div>
             </div>
@@ -177,7 +171,7 @@ const ProductDetail = () => {
                 <div className="flex items-center gap-3">
                   <Truck className="h-5 w-5 text-muted-foreground" />
                   <span className="body-md text-muted-foreground">
-                    Free shipping on orders above ₹2,999
+                    Free shipping on orders above AED 200
                   </span>
                 </div>
                 <div className="flex items-center gap-3">

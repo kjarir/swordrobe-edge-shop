@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Product } from "@/data/products";
 import { cn } from "@/lib/utils";
+import { useCurrency } from "@/contexts/CurrencyContext";
 
 interface ProductCardProps {
   product: Product;
@@ -8,13 +9,7 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product, className }: ProductCardProps) => {
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('en-IN', {
-      style: 'currency',
-      currency: 'INR',
-      maximumFractionDigits: 0,
-    }).format(price);
-  };
+  const { formatPrice } = useCurrency();
 
   return (
     <Link
@@ -25,7 +20,7 @@ const ProductCard = ({ product, className }: ProductCardProps) => {
         {/* Product Image */}
         <div className="aspect-[3/4] bg-gradient-to-br from-secondary via-muted/50 to-secondary flex items-center justify-center relative overflow-hidden">
           <span className="text-muted-foreground/20 font-heading text-sm tracking-[0.3em] transition-all duration-300 group-hover:scale-110 group-hover:opacity-30">
-            SWORDROBE
+            LavenderLily
           </span>
           
           {/* Hover overlay */}
@@ -52,7 +47,7 @@ const ProductCard = ({ product, className }: ProductCardProps) => {
         </div>
 
         {/* Quick View */}
-        <div className="absolute bottom-0 left-0 right-0 bg-foreground text-background py-3 text-center translate-y-full group-hover:translate-y-0 transition-transform duration-200">
+        <div className="absolute bottom-0 left-0 right-0 bg-lavender text-foreground py-3 text-center translate-y-full group-hover:translate-y-0 transition-transform duration-200">
           <span className="font-heading text-xs tracking-[0.2em]">QUICK VIEW</span>
         </div>
       </div>
