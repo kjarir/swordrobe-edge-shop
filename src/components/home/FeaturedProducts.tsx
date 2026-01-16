@@ -1,8 +1,9 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import ProductCard from "@/components/products/ProductCard";
-import { getFeaturedProducts } from "@/data/products";
+import { fetchFeaturedProducts } from "@/lib/products";
+import { Product } from "@/data/products";
 import { ArrowRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -10,7 +11,22 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const FeaturedProducts = () => {
-  const featuredProducts = getFeaturedProducts();
+  const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadProducts = async () => {
+      try {
+        const products = await fetchFeaturedProducts();
+        setFeaturedProducts(products);
+      } catch (error) {
+        console.error('Failed to load featured products:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadProducts();
+  }, []);
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const productsRef = useRef<HTMLDivElement>(null);
@@ -62,7 +78,15 @@ const FeaturedProducts = () => {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [featuredProducts]);
+
+  if (loading) {
+    return null; // Don't show section while loading
+  }
+
+  if (featuredProducts.length === 0) {
+    return null; // Don't show section if no featured products
+  }
 
   return (
     <section ref={sectionRef} className="section-padding bg-background relative overflow-hidden">

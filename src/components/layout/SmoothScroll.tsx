@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { trackPageView } from "@/lib/analytics";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,6 +15,9 @@ const SmoothScroll = () => {
 
     // Smooth scroll behavior
     window.scrollTo({ top: 0, behavior: "smooth" });
+
+    // Track page view
+    trackPageView(location.pathname);
   }, [location]);
 
   useEffect(() => {

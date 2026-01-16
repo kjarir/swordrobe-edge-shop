@@ -2,7 +2,9 @@ import { useState, useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import ProductCard from "@/components/products/ProductCard";
-import { products, categories, getProductsByCategory } from "@/data/products";
+import { categories } from "@/data/products";
+import { fetchProducts, fetchProductsByCategory } from "@/lib/products";
+import { Product } from "@/data/products";
 import { cn } from "@/lib/utils";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -12,8 +14,26 @@ gsap.registerPlugin(ScrollTrigger);
 const Shop = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const activeCategory = searchParams.get("category") || "all";
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const filteredProducts = getProductsByCategory(activeCategory);
+  useEffect(() => {
+    const loadProducts = async () => {
+      try {
+        setLoading(true);
+        const products = activeCategory === "all" 
+          ? await fetchProducts() 
+          : await fetchProductsByCategory(activeCategory);
+        setFilteredProducts(products);
+      } catch (error) {
+        console.error('Failed to load products:', error);
+        setFilteredProducts([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadProducts();
+  }, [activeCategory]);
 
   const handleCategoryChange = (categoryId: string) => {
     if (categoryId === "all") {

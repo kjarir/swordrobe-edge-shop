@@ -1,20 +1,62 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
-import { getProductById, products } from "@/data/products";
+import { fetchProductById, fetchProductsByCategory } from "@/lib/products";
+import { Product } from "@/data/products";
 import ProductCard from "@/components/products/ProductCard";
 import { Minus, Plus, ArrowLeft, Truck, RotateCcw, Shield } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useCurrency } from "@/contexts/CurrencyContext";
+import { trackProductView, trackAddToCart, trackPageView } from "@/lib/analytics";
 
 const ProductDetail = () => {
   const { id } = useParams();
   const { toast } = useToast();
   const { formatPrice } = useCurrency();
-  const product = getProductById(id || "");
+  const [product, setProduct] = useState<Product | null>(null);
+  const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [quantity, setQuantity] = useState(1);
+
+  useEffect(() => {
+    const loadProduct = async () => {
+      if (!id) return;
+      
+      try {
+        setLoading(true);
+        trackPageView();
+        trackProductView(id);
+        
+        const productData = await fetchProductById(id);
+        setProduct(productData);
+        
+        // Load related products from same category
+        if (productData) {
+          const related = await fetchProductsByCategory(productData.category);
+          setRelatedProducts(related.filter(p => p.id !== id).slice(0, 4));
+        }
+      } catch (error) {
+        console.error('Failed to load product:', error);
+        setProduct(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    loadProduct();
+  }, [id]);
+
+  if (loading) {
+    return (
+      <Layout>
+        <div className="section-padding text-center">
+          <p className="body-lg text-muted-foreground">Loading product...</p>
+        </div>
+      </Layout>
+    );
+  }
 
   if (!product) {
     return (
@@ -38,15 +80,14 @@ const ProductDetail = () => {
       });
       return;
     }
+    if (id) {
+      trackAddToCart(id, { size: selectedSize, quantity });
+    }
     toast({
       title: "Added to cart",
       description: `${product.name} (${selectedSize}) x ${quantity}`,
     });
   };
-
-  const relatedProducts = products.filter(
-    (p) => p.category === product.category && p.id !== product.id
-  ).slice(0, 4);
 
   return (
     <Layout>

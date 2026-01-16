@@ -1,15 +1,17 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ShoppingBag, Search, ChevronDown } from "lucide-react";
+import { Menu, X, ShoppingBag, Search, ChevronDown, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useCurrency } from "@/contexts/CurrencyContext";
+import { useAuth } from "@/contexts/AuthContext";
 import gsap from "gsap";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 
 const navLinks = [
@@ -18,12 +20,14 @@ const navLinks = [
   { name: "Collections", path: "/collections" },
   { name: "About", path: "/about" },
   { name: "Contact", path: "/contact" },
+  { name: "Admin", path: "/admin" },
 ];
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const { currency, setCurrency } = useCurrency();
+  const { user, signOut } = useAuth();
   const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -107,6 +111,42 @@ const Header = () => {
                 0
               </span>
             </Button>
+
+            {/* User Menu */}
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm" className="hidden md:flex hover:bg-secondary transition-colors duration-200 font-heading text-xs tracking-wider">
+                    {user.email?.split('@')[0]}
+                    <ChevronDown className="h-3 w-3 ml-1" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="min-w-[150px]">
+                  <DropdownMenuItem asChild>
+                    <Link to="/admin" className="font-heading text-xs tracking-wider">
+                      Admin Panel
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem 
+                    onClick={async () => {
+                      await signOut();
+                      window.location.href = '/';
+                    }}
+                    className="font-heading text-xs tracking-wider text-destructive"
+                  >
+                    <LogOut className="h-3 w-3 mr-2" />
+                    Logout
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Link to="/login">
+                <Button variant="ghost" size="sm" className="hidden md:flex hover:bg-secondary transition-colors duration-200 font-heading text-xs tracking-wider">
+                  Login
+                </Button>
+              </Link>
+            )}
             
             {/* Mobile Menu Toggle */}
             <Button
