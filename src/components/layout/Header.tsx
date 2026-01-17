@@ -48,6 +48,19 @@ const Header = () => {
     return () => ctx.revert();
   }, []);
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMenuOpen]);
+
   return (
     <header ref={headerRef} className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border/30">
       <div className="container-wide">
@@ -164,23 +177,34 @@ const Header = () => {
         </div>
       </div>
 
+      {/* Mobile Menu Backdrop */}
+      {isMenuOpen && (
+        <div
+          className="lg:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40 transition-opacity duration-300"
+          onClick={() => setIsMenuOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
       {/* Mobile Menu */}
       <div
         className={cn(
-          "lg:hidden fixed inset-x-0 top-16 bg-background/98 backdrop-blur-md border-b border-border transition-all duration-300 ease-out",
-          isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
+          "lg:hidden fixed inset-x-0 top-16 md:top-20 bg-background border-b border-border shadow-2xl z-50 transition-all duration-300 ease-out max-h-[calc(100vh-4rem)] md:max-h-[calc(100vh-5rem)] overflow-y-auto",
+          isMenuOpen ? "opacity-100 translate-y-0 visible" : "opacity-0 -translate-y-4 pointer-events-none invisible"
         )}
+        role="navigation"
+        aria-label="Mobile navigation"
       >
-        <nav className="container-wide py-8 flex flex-col gap-1">
+        <nav className="container-wide py-6 md:py-8 flex flex-col gap-1">
           {navLinks.map((link, index) => (
             <Link
               key={link.path}
               to={link.path}
               onClick={() => setIsMenuOpen(false)}
               className={cn(
-                "text-2xl font-heading tracking-[0.1em] uppercase py-3 transition-all duration-200 border-b border-border/30",
+                "text-xl md:text-2xl font-heading tracking-[0.1em] uppercase py-3 md:py-4 px-2 transition-all duration-200 border-b border-border/30 hover:bg-secondary/50",
                 location.pathname === link.path
-                  ? "text-foreground"
+                  ? "text-foreground font-bold bg-secondary/30"
                   : "text-muted-foreground hover:text-foreground hover:translate-x-2"
               )}
               style={{ animationDelay: `${index * 0.05}s` }}
